@@ -1,0 +1,13 @@
+.user__info-container {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+
+
+@media screen and (max-width: 568px) {
+  .user__info-container {
+    gap: 10px;
+    align-items: center;
+  }
+}

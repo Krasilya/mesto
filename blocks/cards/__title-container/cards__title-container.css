@@ -1,0 +1,8 @@
+.cards__title-container {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 20px;
+
+}

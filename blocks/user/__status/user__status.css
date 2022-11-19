@@ -1,0 +1,15 @@
+.user__status {
+  margin: 0;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 568px) {
+  .user__status {
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    padding-top: 6px;
+  }
+}

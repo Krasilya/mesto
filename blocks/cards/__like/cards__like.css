@@ -1,0 +1,8 @@
+.cards__like {
+  height: 19px;
+  width: 22px;
+  background-image: url(../../../images/vector3.svg);
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}

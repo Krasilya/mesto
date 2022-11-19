@@ -1,0 +1,17 @@
+.user__add-button {
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  border: 2px solid white;
+  background-color: black;
+  background-image: url(../../../images/vector.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 568px) {
+  .user__add-button {
+    width: 282px;
+    background-size: 16px;
+  }
+}
