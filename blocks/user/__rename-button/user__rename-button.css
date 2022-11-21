@@ -1,11 +1,17 @@
 .user__rename-button {
   width: 24px;
   height: 24px;
+  cursor: pointer;
   background-color: black;
   border: 1px solid white;
   background-image: url(../../../images/vector2.png);
   background-position: center;
   background-repeat: no-repeat;
+  transition: all .5s;
+}
+
+.user__rename-button:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 568px) {

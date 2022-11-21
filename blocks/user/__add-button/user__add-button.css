@@ -7,9 +7,14 @@
   background-image: url(../../../images/vector.png);
   background-position: center;
   background-repeat: no-repeat;
+  transition: all .5s;
 }
 
-@media screen and (max-width: 568px) {
+.user__add-button:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 796px) {
   .user__add-button {
     width: 282px;
     background-size: 16px;

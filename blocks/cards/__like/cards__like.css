@@ -5,4 +5,9 @@
   border: none;
   background-color: white;
   cursor: pointer;
+  transition: all .5s;
+}
+
+.cards__like:hover {
+  opacity: .5;
 }
