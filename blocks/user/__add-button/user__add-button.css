@@ -4,10 +4,12 @@
   cursor: pointer;
   border: 2px solid white;
   background-color: black;
-  background-image: url(../../../images/vector.png);
+  background-image: url(../../../images/plus.svg);
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 2px;
   transition: all .5s;
+  background-size: 22px;
 }
 
 .user__add-button:hover {
