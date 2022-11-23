@@ -1,11 +1,12 @@
 .cards__like {
   height: 19px;
-  width: 22px;
+  min-width: 22px;
   background-image: url(../../../images/vector3.svg);
   border: none;
   background-color: white;
   cursor: pointer;
   transition: all .5s;
+  margin-right: 20px;
 }
 
 .cards__like:hover {
