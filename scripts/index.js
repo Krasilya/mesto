@@ -13,7 +13,10 @@ const cardsContainer = document.querySelector('.cards');
 const popupAddPlaceForm = popupAddPlaceElement.querySelector('.popup__form');
 const popupAddPlaceFormName = popupAddPlaceForm.querySelector('.popup__input_type_place-name');
 const popupAddPlaceFormLink = popupAddPlaceForm.querySelector('.popup__input_type_image-link');
-
+const popupBigImageElement = document.querySelector('#big-image');
+const popupBigImageClose = popupBigImageElement.querySelector('.popup__close');
+const popupBigImagePicture = popupBigImageElement.querySelector('.popup__big-image');
+const popupBigImageCaption = popupBigImageElement.querySelector('.popup__caption');
 const initialCards = [
   {
     name: 'Архыз',
@@ -48,7 +51,6 @@ const toggleAddPlaceVisibility = function () {
 popupAddPlaceOpenElement.addEventListener('click' , toggleAddPlaceVisibility);
 popupAddPlaceCloseElement.addEventListener('click' , toggleAddPlaceVisibility);
 
-
 //открытие/закрытие редактирования профиля
 const togglePopupVisibility = function () {
   popupUserName.value = userName.textContent;
@@ -77,15 +79,34 @@ const popupSavePlace = function (evt) {
     name: popupAddPlaceFormName.value ,
     link: popupAddPlaceFormLink.value ,
   });
-
+  toggleAddPlaceVisibility();
 }
 
 popupAddPlaceForm.addEventListener('submit' , popupSavePlace);
+
+const popupBigImageOpen = function () {
+  popupBigImageElement.classList.toggle('popup_is-opened');
+}
+
+const generateBigImage = function(evt) {
+  popupBigImagePicture.src = evt.target.src;
+  popupBigImageCaption.textContent = evt.target.closest('.cards__item').querySelector('.cards__title').textContent;
+  //console.log(popupBigImagePicture);
+  //console.log(popupBigImageCaption);
+}
+
+const handleCheckTrash = function(evt) {
+  evt.target.closest('.cards__item').remove();
+}
 
 const handleCheckLike = function(evt) {
   evt.target.classList.toggle('cards__like_active');
   }
 
+const handleOpenBigImage = function(evt) {
+  generateBigImage(evt);
+  popupBigImageOpen();
+}
 // генерация карточки в копию шаблона
 const generateCard = (dataCard) => {
   const newCard = cardTemplate.cloneNode(true);
@@ -93,12 +114,13 @@ const generateCard = (dataCard) => {
   const image = newCard.querySelector('.cards__image');
   title.textContent = dataCard.name;
   image.src = dataCard.link;
-  //likeButton.addEventListener('click' , handleCheckLike);
+  newCard.querySelector('.cards__trash').addEventListener('click' , handleCheckTrash);
   newCard.querySelector('.cards__like').addEventListener('click' , handleCheckLike);
+  newCard.querySelector('.cards__image').addEventListener('click' , handleOpenBigImage);
   return newCard;
 }
 
-
+popupBigImageClose.addEventListener('click' , popupBigImageOpen);
 
 //рендер карточки
 const renderCard = (dataCard) => {
@@ -108,8 +130,6 @@ const renderCard = (dataCard) => {
 initialCards.forEach((dataCard) => {
   renderCard(dataCard);
 })
-
-//лайк
 
 
 
