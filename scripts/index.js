@@ -44,20 +44,38 @@ const initialCards = [
   }
 ];
 
-// const toggleAddPlaceVisibility = function () {
-//   popupAddPlaceElement.classList.toggle('popup_is-opened');
-// }
-
 const openPopup = function (popup) {
   popup.classList.add('popup_is-opened');
+  document.addEventListener('keyup' , handleEscUp);
 }
 
 const closePopup = function (popup) {
   popup.classList.remove('popup_is-opened');
+  document.removeEventListener('keyup' , handleEscUp);
 }
 
-//popupAddPlaceOpenElement.addEventListener('click' , toggleAddPlaceVisibility);
-//popupAddPlaceCloseElement.addEventListener('click' , toggleAddPlaceVisibility);
+const handleEscUp = function (evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_is-opened');
+    closePopup(openedPopup);
+  }
+}
+
+popupElement.addEventListener('click' , (e) => {
+  if(!e.target.closest('.popup__container')) {
+    closePopup(e.target.closest('#popup-rename'))
+  }
+})
+popupAddPlaceElement.addEventListener('click' , (e) => {
+  if(!e.target.closest('.popup__container')) {
+    closePopup(e.target.closest('#popup-add-place'))
+  }
+})
+popupBigImageElement.addEventListener('click' , (e) => {
+  if(!e.target.closest('.popup__big-image')) {
+    closePopup(e.target.closest('#big-image'))
+  }
+})
 
 popupAddPlaceOpenElement.addEventListener('click' , () => openPopup(popupAddPlaceElement));
 popupAddPlaceCloseElement.addEventListener('click' , () => closePopup(popupAddPlaceElement));
@@ -66,19 +84,16 @@ popupAddPlaceCloseElement.addEventListener('click' , () => closePopup(popupAddPl
 const togglePopupVisibility = function () {
   popupUserName.value = userName.textContent;
   popupUserStatus.value = userStatus.textContent;
-  // popupElement.classList.toggle('popup_is-opened');
   openPopup(popupElement);
 }
 
 popupOpenElement.addEventListener('click', togglePopupVisibility);
-// popupCloseElement.addEventListener('click', togglePopupVisibility);
 popupCloseElement.addEventListener('click' , () => closePopup(popupElement));
 
 const handleProfileFormSubmit = function (evt) {
   evt.preventDefault();
   userName.textContent = popupUserName.value;
   userStatus.textContent = popupUserStatus.value;
-  // popupElement.classList.toggle('popup_is-opened');
   closePopup(popupElement);
 }
 
@@ -99,16 +114,10 @@ const handlePlaceFormSubmit = function (evt) {
 
 popupAddPlaceForm.addEventListener('submit' , handlePlaceFormSubmit);
 
-// const popupBigImageOpen = function () {
-//   popupBigImageElement.classList.toggle('popup_is-opened');
-// }
-
 const generateBigImage = function(evt) {
   popupBigImagePicture.src = evt.target.src;
   popupBigImagePicture.alt = evt.target.closest('.cards__item').querySelector('.cards__title').textContent;
   popupBigImageCaption.textContent = evt.target.closest('.cards__item').querySelector('.cards__title').textContent;
-  //console.log(popupBigImagePicture);
-  //console.log(popupBigImageCaption);
 }
 
 const handleCheckTrash = function(evt) {
@@ -121,7 +130,6 @@ const handleCheckLike = function(evt) {
 
 const handleOpenBigImage = function(evt) {
   generateBigImage(evt);
-  // popupBigImageOpen();
   openPopup(popupBigImageElement);
 }
 // генерация карточки в копию шаблона
@@ -138,7 +146,6 @@ const generateCard = (dataCard) => {
   return newCard;
 }
 
-// popupBigImageClose.addEventListener('click' , popupBigImageOpen);
 popupBigImageClose.addEventListener('click' , () => closePopup(popupBigImageElement));
 
 //рендер карточки
