@@ -5,3 +5,7 @@
   border: 1px solid black;
   cursor: default;
 }
+
+.popup__save_disabled:hover {
+  opacity: .3;
+}

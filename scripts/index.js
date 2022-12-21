@@ -1,14 +1,14 @@
-const popupElement = document.querySelector('#popup-rename');
-const popupOpenElement = document.querySelector('.user__rename-button');
-const popupCloseElement = popupElement.querySelector('.popup__close');
-const popupForm = popupElement.querySelector('.popup__form');
+const popupEditProfileElement = document.querySelector('#popup-rename');
+const popupEditProfileOpen = document.querySelector('.user__rename-button');
+const popupEditProfileClose = popupEditProfileElement.querySelector('.popup__close');
+const popupEditProfileForm= popupEditProfileElement.querySelector('.popup__form');
 const popupAddPlaceElement = document.querySelector('#popup-add-place');
 const popupAddPlaceOpenElement = document.querySelector('.user__add-button');
 const popupAddPlaceCloseElement = popupAddPlaceElement.querySelector('.popup__close');
 const userName = document.querySelector('.user__name');
 const userStatus = document.querySelector('.user__status');
-const popupUserName = popupForm.querySelector('.popup__input_type_name');
-const popupUserStatus = popupForm.querySelector('.popup__input_type_status');
+const popupUserName = popupEditProfileForm.querySelector('.popup__input_type_name');
+const popupUserStatus = popupEditProfileForm.querySelector('.popup__input_type_status');
 const cardsContainer = document.querySelector('.cards');
 const popupAddPlaceForm = popupAddPlaceElement.querySelector('.popup__form');
 const popupAddPlaceFormName = popupAddPlaceForm.querySelector('.popup__input_type_place-name');
@@ -61,19 +61,19 @@ const handleEscUp = function (evt) {
   }
 }
 
-popupElement.addEventListener('click' , (e) => {
+popupEditProfileElement.addEventListener('click' , (e) => {
   if(!e.target.closest('.popup__container')) {
-    closePopup(e.target.closest('#popup-rename'))
+    closePopup(e.target)
   }
 })
 popupAddPlaceElement.addEventListener('click' , (e) => {
   if(!e.target.closest('.popup__container')) {
-    closePopup(e.target.closest('#popup-add-place'))
+    closePopup(e.target)
   }
 })
 popupBigImageElement.addEventListener('click' , (e) => {
   if(!e.target.closest('.popup__big-image')) {
-    closePopup(e.target.closest('#big-image'))
+    closePopup(e.target)
   }
 })
 
@@ -84,20 +84,20 @@ popupAddPlaceCloseElement.addEventListener('click' , () => closePopup(popupAddPl
 const togglePopupVisibility = function () {
   popupUserName.value = userName.textContent;
   popupUserStatus.value = userStatus.textContent;
-  openPopup(popupElement);
+  openPopup(popupEditProfileElement);
 }
 
-popupOpenElement.addEventListener('click', togglePopupVisibility);
-popupCloseElement.addEventListener('click' , () => closePopup(popupElement));
+popupEditProfileOpen.addEventListener('click', togglePopupVisibility);
+popupEditProfileClose.addEventListener('click' , () => closePopup(popupEditProfileElement));
 
 const handleProfileFormSubmit = function (evt) {
   evt.preventDefault();
   userName.textContent = popupUserName.value;
   userStatus.textContent = popupUserStatus.value;
-  closePopup(popupElement);
+  closePopup(popupEditProfileElement);
 }
 
-popupForm.addEventListener('submit', handleProfileFormSubmit);
+popupEditProfileForm.addEventListener('submit', handleProfileFormSubmit);
 
 //выбор шаблона
 const cardTemplate = document.querySelector('#cards-template').content.querySelector('.cards__item');
@@ -110,6 +110,8 @@ const handlePlaceFormSubmit = function (evt) {
   });
   closePopup(popupAddPlaceElement);
   evt.target.reset();
+  evt.submitter.classList.add('popup__save_disabled');
+  evt.submitter.disabled = true;
 }
 
 popupAddPlaceForm.addEventListener('submit' , handlePlaceFormSubmit);
@@ -142,7 +144,7 @@ const generateCard = (dataCard) => {
   image.alt = dataCard.name;
   newCard.querySelector('.cards__trash').addEventListener('click' , handleCheckTrash);
   newCard.querySelector('.cards__like').addEventListener('click' , handleCheckLike);
-  newCard.querySelector('.cards__image').addEventListener('click' , handleOpenBigImage);
+  image.addEventListener('click' , handleOpenBigImage);
   return newCard;
 }
 
