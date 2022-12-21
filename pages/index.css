@@ -41,7 +41,7 @@
 @import url(../blocks/popup/__big-image-wrap/popup__big-image-wrap.css);
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__big-image/popup__big-image.css);
-@import url(../blocks/popup/__overlay-opacity/popup__overlay-opacity.css);
+@import url(../blocks/page/__overlay-opacity/page__overlay-opacity.css);
 
 @import url(../blocks/error/error.css);
 
