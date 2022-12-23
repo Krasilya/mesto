@@ -36,7 +36,7 @@
     <div class="popup__container">
       <button type="button" class="popup__close"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__form" name="rename-form">
+      <form class="popup__form" name="rename-form" novalidate>
         <input id="user-name" type="text" class="popup__input popup__input_type_name" required name="user-name" minlength="2" maxlength="40">
         <span class="error" id="user-name-error"></span>
         <input id="user-status" type="text" class="popup__input popup__input_type_status" required name="user-status" minlength="2" maxlength="200">
@@ -49,12 +49,12 @@
     <div class="popup__container popup__container-add-place">
       <button type="button" class="popup__close"></button>
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form" name="add-place-form">
+      <form class="popup__form" name="add-place-form" novalidate>
         <input id="image-name" type="text" class="popup__input popup__input_type_place-name" placeholder="Название" required minlength="2" maxlength="40">
         <span id="image-name-error" class="error"></span>
         <input id="image-link" type="url" class="popup__input popup__input_type_image-link" placeholder="Ссылка на картинку" required>
         <span id="image-link-error" class="error"></span>
-        <button class="popup__save" type="submit">Сохранить</button>
+        <button class="popup__save popup__save_disabled" type="submit">Сохранить</button>
       </form>
     </div>
   </section>
